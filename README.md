@@ -32,7 +32,7 @@ The service exposes a GraphQL interface with the following features:
 - Index all incidents in the system
   - This includes filtering by fields, sorting by the date of creation and update and pagination
   
-GraphQL `TypeDefs` and `Resolvers` are defined in grqphql dir and used to composition graphql service. We also inject a db service in the composition to enable the GraphQL interaction with data source, which is a mongodb. 
+GraphQL `TypeDefs`, `Resolvers` and `Service` are defined in grqphql dir and used to compose a graphql service. We also inject a db service in the composition to enable the GraphQL interaction with data source, which is a mongodb. 
 
 ## MongoDB
 
