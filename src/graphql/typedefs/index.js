@@ -1,4 +1,4 @@
-'use strict'
+
 
 const rootType = require('./root')
 const user = require('./User')

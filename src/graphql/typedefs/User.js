@@ -1,4 +1,4 @@
-'use strict'
+
 
 const { gql } = require('apollo-server-express')
 
@@ -11,11 +11,19 @@ enum UserRoleTypes {
 
 }
 
+input assigneeInputField {
+  name: String!
+  email: String!
+}
+input UpdateUserInputField {
+  id: String!
+  assignee: assigneeInputField!  
+}
+
 type User {
 	name: String
 	email: String
 	role: String
 }
 `
-
 module.exports = User;

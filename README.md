@@ -1,17 +1,27 @@
-# Slate backend test assignment (GraphQL)
+# Incident Management Microservice(GraphQL)
 
-This repository contains boilerplate for the backend test assignment.
+This repository contains code for Incident Management Microservice.
 The server uses `Express` and `apollo-server-express` to expose a GraphQL interface. `MongoDB` is used as a database with `mongoose` as ODM.
 
-## Goal
+##Service Domain
 
-Currently, if you run `npm start`, you will see an error since there are no definitions for Apollo Server. Your task is to create these definitions according to the requirements in [Test assignment](#test-assignment).
+The Service handles Incident entity and following interactions:
+- Create an incident 
+- Update an incident
+- list incident details
+- delete an incident
+- list all incidents
 
-When you are done with the test, please send a link to your repo to your recruiter.  Thank you for your time and interest in Slate!
+The service also handles incident entity relationship with user entity. The relationship is called assignee. The relationship has following constraints:
 
-## Test assignment
+- On incident creation, a random user with Engineer role is set as assignee by the service. This is automatic and no input is expected from client.
+- Only User with a role of Engineer can be assigned an incident.
+- Incident can be reassigned to another user. This will only work provided the incident status is Created. For example, if first assignee is not available or off duty, incident can be reassigned to another user.
 
-Using the boilerplate in this repo, expose a GraphQL interface with the following features:
+
+## QraphQL
+
+The service exposes a GraphQL interface with the following features:
 
 - Raise (create) an incident and assign it to a user with an `Engineer` role
 - Assign the incident to a user
@@ -22,39 +32,18 @@ Using the boilerplate in this repo, expose a GraphQL interface with the followin
 - Index all incidents in the system
   - This includes filtering by fields, sorting by the date of creation and update and pagination
   
-`Incident` and `User` models are defined for your convenience. There is no need to wire up the user management system.
+GraphQL `TypeDefs` and `Resolvers` are defined in grqphql dir and used to composition graphql service. We also inject a db service in the composition to enable the GraphQL interaction with data source, which is a mongodb. 
 
-## Evaluation
+## MongoDB
 
-You should spend no more than **4 hours** on this test assignment.
+Domain dir contains mongo models and corresponding handlers. Both are used to compose a dbservice. 
 
-Before you submit the link to your fork with a complete assignment, please make sure your repo contains:
+## Setup
 
-- The code for exposing the GraphQL interface
-- A Dockerfile with the code necessary to run your app as a docker container (currently empty)
-- Edited `docker-compose.yaml` that includes the reference to your app's docker image along with `mongo`
-
-You are allowed to:
-
-- Add/delete any npm packages as you see fit
-- Structure the code in any way you want
-- Add any code formatters and linters
-- Add configuration variables if needed
-
-You are **not** allowed to:
-- Change mongoose models
-
-We will judge your work based on following criteria:
-- Code quality, structure and readability
-- Amount of boilerplate code
-- Usage of new language and framework features to reduce the amount of code written
-- Presence of code tests (not required, but is still a big bonus)
-- Edge cases coverage (e.g. no user with an Engineer role in the DB)
-
-## Start the development
-
-Make sure you have Node.js v8+ installed.
-
-For your convenience this repository also includes a `docker-compose.yaml` file, which has a mongodb server wired up to the app. `docker-compose up -d` runs in `prestart` hook before `npm start`. If you want to use your own DB setup instead, just delete `prestart` webhook from `package.json`.
-
-Run `npm start` in the root folder of the project to start the development.
+Make sure you have Docker installed.
+ - clone the git repo.
+ - cd into the cloned dir.
+ - run `docker-compose up -d`.
+ - Open a browser and go to http://localhost/graphql. This will open up a graphql query interface with all the necessary information.
+ - One can also use POSTMAN to interact with the service. 
+ 

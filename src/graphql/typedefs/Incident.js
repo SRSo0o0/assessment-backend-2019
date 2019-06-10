@@ -1,4 +1,4 @@
-'use strict'
+
 
 const { gql } = require('apollo-server-express')
 
@@ -12,18 +12,6 @@ enum IncidentStatusTypes {
 
 }
 
-input FilterfieldStringInput {
-  ne: String
-  eq: String
-  le: String
-  lt: String
-  ge: String
-  gt: String
-  contains: String
-  notContains: String
-
-}
-
 input RaiseIncidentInputField {
 
   title: String!
@@ -31,18 +19,19 @@ input RaiseIncidentInputField {
      
 }
 
-input UpdateUserInputField {
-  _id: String!
-  assignee: String!  
+input IncidentFilterfield {
+  title: String
+  description: String
+  status: IncidentStatusTypes
+  
 }
 
-input IncidentFilterfield {
-  title: FilterfieldStringInput
-  description: FilterfieldStringInput
-  assignee: FilterfieldStringInput
-  status: FilterfieldStringInput
-  createdAt: FilterfieldStringInput
-  updatedAt: FilterfieldStringInput
+input SortInputfield {
+  field: String
+  order: Int
+}
+input PageInputfield {
+  pageNo: Int
 }
 
 type DeleteStatus {
@@ -55,7 +44,7 @@ type UpdateStatus {
 }
 
 type Incident {
-  id: String
+  _id: String
   title: String
   description: String
   assignee: User
@@ -67,12 +56,14 @@ type Incident {
 type IncidentList {
 	incidents:[Incident]
 	totalCount: Int
+  totalPageItems: Int
+  pageNo: Int
 }
 
 extend type Query {
 
   listIncident(id: String!): Incident
-  listIncidents(filter: IncidentFilterfield, first:Int, offset:Int):IncidentList  
+  listIncidents(filter: IncidentFilterfield, sort:SortInputfield, pagination: PageInputfield):IncidentList  
 
 }
 

@@ -1,4 +1,4 @@
-'use strict'
+
 
 const { gql } = require('apollo-server-express')
 
@@ -11,4 +11,4 @@ const rootType = gql`
   	root: String
   }
  `
- module.exports = rootType
+module.exports = rootType

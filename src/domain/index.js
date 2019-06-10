@@ -1,4 +1,3 @@
-'use strict'
 
 const { User, Incident } = require('./models')
 const handlers = require('./repository/handlers')
