@@ -3,7 +3,7 @@
 This repository contains code for Incident Management Microservice.
 The server uses `Express` and `apollo-server-express` to expose a GraphQL interface. `MongoDB` is used as a database with `mongoose` as ODM.
 
-##Service Domain
+## Service Domain
 
 The Service handles Incident entity and following interactions:
 - Create an incident 
