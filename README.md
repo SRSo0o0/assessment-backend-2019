@@ -14,7 +14,7 @@ The Service handles Incident entity and following interactions:
 
 The service also handles incident entity relationship with user entity. The relationship is called assignee. The relationship has following constraints:
 
-- On incident creation, a random user with Engineer role is set as assignee by the service. This is automatic and no input is expected from client.
+- On incident creation, a random user with Engineer role is set as assignee by the service. This is automatic and no user input is expected from client.
 - Only User with a role of Engineer can be assigned an incident.
 - Incident can be reassigned to another user. This will only work provided the incident status is Created. For example, if first assignee is not available or off duty, incident can be reassigned to another user.
 
