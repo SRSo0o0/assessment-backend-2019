@@ -91,8 +91,8 @@ const handlers = (modelSchema, relationSchema) => {
 
   const assignUser = async ({ id, update }) => {
 
-    const ok = 1; const
-      nModified = 1
+    const ok = 1
+    const nModified = 1
     const { assignee } = update
     const query = Object.assign({}, assignee, { role: 'Engineer' })
     const userExists = await relationSchema.findOne(assignee).exec()
