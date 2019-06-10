@@ -1,7 +1,7 @@
 'use strict'
 
 const express = require(`express`)
-const graphQLSERVER = require('./graphql/schema.js')
+const graphQLSERVER = require('./graphql')
 const config = require('config')
 const mongoose  = require('mongoose')
 mongoose.Promise  = global.Promise

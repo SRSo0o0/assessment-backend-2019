@@ -1,7 +1,7 @@
 'use strict'
 
 const { ApolloServer } = require('apollo-server-express')
-const dbRepo = require('../domain')
+const repo = require('../domain')
 const TYPEDEFS = require('./typeDefs')
 const RESOLVERS = require('./resolvers')
 
@@ -10,7 +10,7 @@ const SERVER = new ApolloServer({
   resolvers: RESOLVERS,
   context: ({ req }) => ({
     req,
-    dbRepo
+    repo
   }),
   playground: {
     endpoint: `http://localhost:3000/graphql`,

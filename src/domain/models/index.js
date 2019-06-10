@@ -1,3 +1,5 @@
+'use strict'
+
 const User = require('./User')
 const Incident = require('./Incident')
 

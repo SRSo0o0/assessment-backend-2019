@@ -45,13 +45,6 @@ input IncidentFilterfield {
   updatedAt: FilterfieldStringInput
 }
 
-enum UserRoleTypes {
-
-  Engineer
-  Supervisor
-
-}
-
 type DeleteStatus {
 	status: String
 }
@@ -59,12 +52,6 @@ type DeleteStatus {
 type UpdateStatus {
 	nModified: Int
 	ok: Int
-}
-
-type User {
-	name: String
-	email: String
-	role: String
 }
 
 type Incident {
